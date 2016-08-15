@@ -22,5 +22,5 @@ int main() {
     out << head + table + contents + end;
     out.close();
 
-    return 0;S
+    return 0;
 }
