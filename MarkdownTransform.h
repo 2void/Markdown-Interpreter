@@ -2,6 +2,15 @@
 #define MarkdownTransform_H_
 
 #include <string>
+#include <cstdlib>
+#include <vector>
+#include <cstring>
+#include <fstream>
+#include <utility>
+#include <cctype>
+#include <cstdio>
+
+using namespace std;
 
 enum {
     maxLength = 10000,
@@ -27,13 +36,34 @@ enum {
     code = 19
 };
 
-const std::string frontTag[] = {
+const string frontTag[] = {
     "", "<p>", "", "<ul>", "<ol>", "<li>", "<em>", "<strong>",
     "<hr color=#CCCCCC size=1 />", "<br />",
     "", "<blockquote>",
     "<h1 ", "<h2 ", "<h3 ", "<h4 ", "<h5 ", "<h6 ",
     "<pre><code>", "<code>"
 };
+
+const string backtag[] = {
+    "", "</p>", "", "</ul>", "</ol>", "</li>", "</em>", "</stirng>",
+    "", "", "", "</blockquote>",
+    "</h1>", "</h2>", "</h3>", "</h4>", "</h5>", "</h6>",
+    "</code></pre>", "</code>"
+};
+
+typedef struct Cnode {
+    vector<Cnode *> ch;
+    string heading;
+    string tag;
+    Cnode(const strign & hd) : heading(hd) {}
+} Cnode;
+
+typedef struct node {
+    int type;
+    vector<node *> ch;
+    string elem[3];
+    node(int _type) : type(_type) {}
+} node;
 
 class MarkdownTransform {
 private:
@@ -48,4 +78,4 @@ public:
     ~MarkdownTransform();
 };
 
-#endif;
+#endif
