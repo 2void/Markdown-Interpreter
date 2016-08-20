@@ -67,7 +67,42 @@ typedef struct node {
 
 class MarkdownTransform {
 private:
+    node * root, * now;
+    Cnode * Croot;
     std::string content, TOC;
+    int cntTag = 0;
+    char s[maxLength];
+
+    inline bool IsHeading(node * v) {
+        return (v->type >= h1 && v->type <= h6);
+    }
+    inline bool IsImage(node * v) {
+        return (v->type == image);
+    }
+    inline bool IsHref(node * v) {
+        return (v->type == href);
+    }
+
+    template<typename T>
+    void destroy(T * v);
+
+    void Cdfs(Cnode * v, string index);
+
+    void Cins(Cnode * v, int x, const string & hd, int tag);
+
+    void dfs(node * v);
+
+    bool IsCutline(char * src);
+
+    void mkpara(node * v);
+
+    pair<int, char *> start(char * src);
+
+    pair<int, char *> JudgeType(char * src);
+
+    node* findnode(int depth);
+
+    void insert(node * v, const string & src);
 public:
     MarkdownTransform(const std::string & filename);
 
