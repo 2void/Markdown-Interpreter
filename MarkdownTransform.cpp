@@ -38,5 +38,29 @@ void Cins(Cnode * v, int x, const string &  hd, int tag) {
 }
 
 void dfs(node * v) {
+    if (v->type == paragraph && v->elem[0].elem() && v->ch.empty()) {
+        return ;
+    }
     
+    content += frontTag[v->type];
+    bool flag = true;
+
+    if (IsHeading(v)) {
+        content += "id=\"" + v->elem[0] + "\">";
+        flag = false;
+    }
+
+    if (IsHref(v)) {
+        content += "<a href=\"" + v->elem[1] + "\" title=\"" + v->elem[2]
+                    + v->elem[0] + "<\a>";
+        flag = false;
+    }
+
+    if (IsImage(v)) {
+        content += "<img alt=\"" + v->elem[0] + "\" src=\"" + v->elem[1] 
+                    + "\" title=\"" + v->elem[2] + "\" />";
+        flag = false;
+    }
+
+    // TODO
 }
