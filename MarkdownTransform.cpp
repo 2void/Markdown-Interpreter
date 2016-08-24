@@ -62,5 +62,25 @@ void dfs(node * v) {
         flag = false;
     }
 
-    // TODO
+    
+}
+
+bool IsCutline(char * src) {
+    int cnt = 0;
+    char 8 ptr = src;
+
+    while (*ptr) {
+        if (*ptr != ' ' && *ptr != '\t' && *ptr != '-') {
+            return false;
+        }
+        if (*ptr == '-') {
+            cnt++;
+        }
+        ptr++;
+    }
+    return cnt >= 3;
+}
+
+void mkpara(node * v) {
+    //TODO
 }
