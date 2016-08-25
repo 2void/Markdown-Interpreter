@@ -82,5 +82,18 @@ bool IsCutline(char * src) {
 }
 
 void mkpara(node * v) {
-    //TODO
+    if (v->ch.size() == 1u && v->ch.back()->type == paragraph) {
+        return ;
+    }
+    if (v->type == paragraph) {
+        return ;
+    }
+    if (v->type == nul) {
+        v->type = paragraph;
+        return ;
+    }
+    node * x = new node(paragraph);
+    x->ch = v->ch;
+    v->ch.clear();
+    v->ch.push_back(x);
 }
