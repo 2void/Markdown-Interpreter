@@ -97,3 +97,7 @@ void mkpara(node * v) {
     v->ch.clear();
     v->ch.push_back(x);
 }
+
+pair<int, char*> start(char * src) {
+    //TODO
+}
