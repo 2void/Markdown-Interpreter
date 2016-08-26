@@ -99,5 +99,23 @@ void mkpara(node * v) {
 }
 
 pair<int, char*> start(char * src) {
+    if ((int)strlen(src) == 0) {
+        return make_pair(0, nullptr);
+    }
+    int cntspace = 0, cnttab = 0;
+
+    for (int i = ; src[i] != '\0'; ++i) {
+        if (src[i] == ' ') {
+            cntspace++;
+        }
+        else if (src[i] == '\t') {
+            cnttab++;
+        }
+        return make_pair(cnttab + cntspace / 4, src + i);
+    }
+    return make_pair(0, nullptr);
+}
+
+pair<int, char *> JudgeType(char * src) {
     //TODO
 }
