@@ -117,6 +117,14 @@ pair<int, char*> start(char * src) {
 }
 
 pair<int, char *> JudgeType(char * src) {
-    // TODO 
-    // Tommorrow
+	char * ptr = src;
+
+	while (*ptr == '#') {
+		ptr++;
+	}
+	if (ptr - src > 0 && *ptr == ' ') {
+		return make_pair(ptr - src + h1 - 1, ptr + 1);
+	}
+	ptr = src;
+
 }
