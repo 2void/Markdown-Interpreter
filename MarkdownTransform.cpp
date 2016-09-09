@@ -126,5 +126,21 @@ pair<int, char *> JudgeType(char * src) {
 		return make_pair(ptr - src + h1 - 1, ptr + 1);
 	}
 	ptr = src;
-	//TODO
+	if (strncmp(ptr, "```", 3) == 0) {
+		return make_pair(blockcode, ptr + 3);
+	}
+	if (strncmp(ptr, "- ", 2) == 0) {
+		return make_pair(ul, ptr + 1);
+	}
+	if (*ptr == '>' && (ptr[1] == ' ')) {
+		return make_pair(quote, ptr + 1);
+	}
+	char * ptr1 = ptr;
+	while (*ptr1 && (isdigit(*ptr1))) {
+		ptr1++;
+	}
+	if (ptr1 != ptr && *ptr1 == '.' && ptr1[1] == ' ') {
+		return make_pair(ol, ptr1 + 1);	
+	}
+	return make_pair(paragraph, ptr);
 }
