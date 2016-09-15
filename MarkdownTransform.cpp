@@ -144,3 +144,12 @@ pair<int, char *> JudgeType(char * src) {
 	}
 	return make_pair(paragraph, ptr);
 }
+inline node * findnode(int depth) {
+	node * ptr = root;
+	while (!ptr->ch.empty() && depth != 0) {
+		ptr = ptr->ch.back();
+		if (ptr->type == li)
+			depth--;
+	}
+	return ptr;
+}
