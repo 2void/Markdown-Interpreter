@@ -153,3 +153,6 @@ inline node * findnode(int depth) {
 	}
 	return ptr;
 }
+void insert(node * v, const string & src) {
+	//TODO
+}
